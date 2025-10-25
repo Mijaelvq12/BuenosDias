@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Oruguita 🐛✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: clamp(1.8em, 5vw, 3em);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+            word-wrap: break-word;
+        }
+
+        .caterpillar {
+            font-size: clamp(3em, 8vw, 5em);
+            animation: wiggle 1.5s infinite;
+            display: inline-block;
+        }
+
+        .message {
+            font-size: clamp(1.1em, 3vw, 1.5em);
+            color: #333;
+            line-height: 1.8;
+            margin: 30px 0;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #ff6b9d;
+            animation: heartbeat 1.5s infinite;
+            font-size: 1.2em;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: clamp(1em, 2.5vw, 1.2em);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            width: auto;
+            min-width: 150px;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            .message {
+                margin: 20px 0;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+
+            .message p {
+                margin-bottom: 12px;
+            }
+
+            .btn {
+                margin-top: 20px;
+            }
+
+            .star {
+                width: 2px;
+                height: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1>¡Buenos días Oruguita! <span class="caterpillar">🐛</span></h1>
+        
+        <div class="message">
+            <p>¡Te quiero mucho! <span class="heart">♥️✨</span></p>
+            <p>Que tengas un día increíble y maravilloso.</p>
+            <p>¡Que todo te salga super bien hoy!</p>
+            <p><span class="heart">✨</span> Eres lo mejor <span class="heart">✨</span></p>
+        </div>
+
+        <button class="btn" onclick="showSurprise()">Presiona aquí 🫂✨</button>
+    </div>
+
+    <script>
+        // Crear estrellas (menos en móviles)
+        const starsContainer = document.getElementById('stars');
+        const starCount = window.innerWidth < 768 ? 30 : 50;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function showSurprise() {
+            alert('¡Te quiero, te adoro y eres lo más especial en mi vida, Oruguita! 🐛♥️✨');
+        }
+    </script>
+</body>
+</html>
